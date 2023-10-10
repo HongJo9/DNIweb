@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Consulta DNI</title>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <h1>Consulta de DNI</h1>
+        
+            <!-- Formulario para ingresar el número de DNI -->
+            <form id="dniForm">
+                <label for="dni">Ingrese el número de DNI:</label>
+                <input type="text" id="dni" name="dni" required>
+                <button type="submit">Consultar</button>
+            </form>
+            
+            <!-- Resultados de la consulta -->
+            <div id="resultados">
+                <h2>Resultados:</h2>
+                <p class="subtitulo">Nombre: <span id="nombre"></span></p>
+                <p class="subtitulo">Apellido Paterno: <span id="apellidoPaterno"></span></p>
+                <p class="subtitulo">Apellido Materno: <span id="apellidoMaterno"></span></p>
+            </div>
+    
+            <!-- Elemento para mostrar el tiempo de carga -->
+            
+        </div>
+    
+        <div class="container">
+            <p>Tiempo de carga: <span id="tiempo"></span> milisegundos</p>
+        </div>
+    </div>
+    
+    <script>
+        // Registrar el tiempo de inicio de carga
+        const tiempoInicioCarga = performance.now();
+
+        // Manejar el envío del formulario
+        document.getElementById("dniForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario por defecto
+            consultarDNI();
+        });
+
+        // Función para consultar el DNI
+        function consultarDNI() {
+            const dni = document.getElementById("dni").value;
+            const url = `https://dniruc.apisperu.com/api/v1/dni/${dni}?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imx1aXMuY2hhdmV6Lmtvb2tAZ21haWwuY29tIn0.6skX3FNzdtKBGZ_IhrhecLj36fdZGrK2DlAlk3LVBDk`;
+
+            // Realizar la solicitud HTTP
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Mostrar los resultados en la página
+                    document.getElementById("nombre").textContent = data.nombres;
+                    document.getElementById("apellidoPaterno").textContent = data.apellidoPaterno;
+                    document.getElementById("apellidoMaterno").textContent = data.apellidoMaterno;
+
+                    // Calcular y mostrar el tiempo de carga
+                    const tiempoFinCarga = performance.now();
+                    const tiempoCarga = tiempoFinCarga - tiempoInicioCarga;
+                    document.getElementById("tiempo").textContent = tiempoCarga.toFixed(2);
+                })
+                .catch(error => {
+                    console.error("Error al consultar el DNI:", error);
+                    alert("Error al consultar el DNI. Por favor, verifique el número de DNI e inténtelo de nuevo.");
+                });
+        }
+    </script>
+</body>
+</html>

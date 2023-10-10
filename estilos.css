@@ -1,0 +1,64 @@
+/* Estilos para centrar el formulario en la pantalla */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url("img/fondo.jpg");
+    /* background-color: #1bc3cf; Fondo gris claro */
+    font-family: Arial, sans-serif; /* Fuente del texto */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+    width: 400px;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */    
+    box-shadow: 0,0,30px rgba(0,0,0, .5);
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */    
+    box-shadow: 0,0,30px rgba(0,0,0, .5);
+    margin-bottom: 30px;
+}
+h1 {
+    text-align: center;
+    color: #333; /* Color de texto gris oscuro */
+}
+span{
+    font-weight: normal;
+}
+label {
+    font-weight: bold;
+}
+input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #442e10; /* Azul */
+    color: #fff; /* Texto blanco */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #251a09; /* Azul más oscuro al pasar el mouse */
+}
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}
